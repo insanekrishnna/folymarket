@@ -1,0 +1,167 @@
+MIT License
+
+Copyright (c) 2026 David Sepulveda
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+                          ADDITIONAL NOTICES
+================================================================================
+
+The MIT License above governs the source code of this project ("Polla Mundial
+2026"). The following additional notices apply and do not modify, restrict or
+override the terms of the MIT License with respect to the code itself.
+
+--------------------------------------------------------------------------------
+1. TRADEMARKS AND THIRD-PARTY RIGHTS
+--------------------------------------------------------------------------------
+
+"FIFA", "FIFA World Cup", "Copa Mundial de la FIFA", "FIFA World Cup 2026",
+the FIFA World Cup Trophy, and any related logos, emblems, mascots, official
+slogans, host-city marks and tournament designs are trademarks, service marks,
+trade dress and/or copyrighted works owned by the Fédération Internationale
+de Football Association (FIFA) and/or its licensors.
+
+This project is an INDEPENDENT, NON-COMMERCIAL, FAN-MADE application and:
+
+  (a) is NOT affiliated with, endorsed by, sponsored by, or in any way
+      officially connected to FIFA, the FIFA 2026 World Cup Local Organizing
+      Committee, U.S. Soccer, Canada Soccer, the Federación Mexicana de
+      Fútbol, any participating national football association, CONMEBOL,
+      UEFA, CONCACAF, AFC, CAF, OFC, or any other football governing body;
+
+  (b) does not claim any ownership over, or rights to, any trademarks,
+      service marks, trade names, logos, emblems, designs or copyrighted
+      content belonging to FIFA, its partners, sponsors or licensees;
+
+  (c) uses the names of national teams, countries, players, stadiums, cities
+      and tournament schedule solely for informational and identification
+      purposes (nominative fair use) to enable users to recognize the real-
+      world event they are predicting.
+
+All national flags displayed within the application are provided by the
+open-source library "flag-icons" (https://flagicons.lipis.dev), licensed under
+the MIT License, and are used as geographic identifiers only, not as
+endorsements by any government.
+
+Names, images, likenesses or statistics of professional football players or
+coaches, when shown, are used for purposes of news reporting, commentary and
+identification, and remain the property of their respective right holders.
+
+If you are a rights holder and believe any content within this project
+infringes your rights, please open an issue in the project repository so the
+maintainers can review and address the matter promptly.
+
+--------------------------------------------------------------------------------
+2. NO AFFILIATION WITH GAMBLING OR BETTING OPERATORS
+--------------------------------------------------------------------------------
+
+"Polla Mundial 2026" is a social prediction game intended for entertainment
+among friends. It is NOT a gambling, betting, wagering, lottery or games-of-
+chance platform. The project:
+
+  (a) does not accept, process, hold, transfer or disburse any real-money
+      wagers, stakes, deposits or prize payouts through the Software;
+
+  (b) does not offer, operate or facilitate any gambling service as defined
+      by the laws of any jurisdiction;
+
+  (c) must not be deployed, forked or modified to operate as an unlicensed
+      gambling, betting or lottery service. Any operator that does so assumes
+      full and sole legal responsibility and indemnifies the original authors
+      and contributors against any claim, loss or penalty arising therefrom.
+
+Users and operators are solely responsible for verifying that any use of the
+Software complies with applicable local, national and international laws,
+including but not limited to laws governing gaming, gambling, consumer
+protection, taxation, data protection and minors' access to online services.
+
+--------------------------------------------------------------------------------
+3. THIRD-PARTY DEPENDENCIES
+--------------------------------------------------------------------------------
+
+This project relies on third-party open-source software, each distributed
+under its own license. Notable dependencies include, without limitation:
+
+  - Next.js           (MIT License)   https://github.com/vercel/next.js
+  - React             (MIT License)   https://github.com/facebook/react
+  - Prisma            (Apache-2.0)    https://github.com/prisma/prisma
+  - NextAuth.js       (ISC License)   https://github.com/nextauthjs/next-auth
+  - Tailwind CSS      (MIT License)   https://github.com/tailwindlabs/tailwindcss
+  - shadcn/ui         (MIT License)   https://github.com/shadcn-ui/ui
+  - lucide-react      (ISC License)   https://github.com/lucide-icons/lucide
+  - flag-icons        (MIT License)   https://github.com/lipis/flag-icons
+  - Zod               (MIT License)   https://github.com/colinhacks/zod
+  - bcryptjs          (MIT License)   https://github.com/dcodeIO/bcrypt.js
+
+A complete and authoritative list of dependencies and their license terms is
+available through the lock file (`package-lock.json`) and can be inspected
+with tools such as `npx license-checker`. Each dependency's license applies
+to the dependency itself; the MIT License of this project does not supersede
+those terms.
+
+--------------------------------------------------------------------------------
+4. DATA, LOGOS AND MEDIA ASSETS
+--------------------------------------------------------------------------------
+
+Tournament metadata such as team names, match fixtures, stadium names and
+host cities is publicly available factual information and is not subject to
+copyright as isolated data points. The specific selection, arrangement and
+presentation of such data within this project IS covered by the MIT License.
+
+Any third-party logos, photographs, videos, fonts or other media assets that
+are not original to this project are used under their respective licenses or
+under applicable fair-use / nominative-use doctrines, and remain the property
+of their respective owners. Remove or replace such assets before distributing
+modified versions of the Software where the corresponding rights have not
+been granted to you.
+
+--------------------------------------------------------------------------------
+5. PRIVACY AND USER DATA
+--------------------------------------------------------------------------------
+
+When deployed, this Software may collect and process personal data from its
+end users (e.g., email addresses, usernames, hashed passwords, predictions).
+The MIT License does not transfer or grant any rights over such user data.
+Operators of any instance of this Software are solely responsible for:
+
+  (a) complying with applicable data-protection regulations (including but
+      not limited to GDPR, CCPA, LGPD and Colombia's Law 1581 of 2012);
+
+  (b) providing a lawful basis for processing, appropriate security
+      measures, user-rights mechanisms and a transparent privacy notice;
+
+  (c) any data breach, misuse or unauthorized disclosure occurring on their
+      deployment.
+
+The original authors and contributors of this open-source project bear no
+liability for data-handling practices of third-party operators.
+
+--------------------------------------------------------------------------------
+6. NO WARRANTY — RESTATED FOR CLARITY
+--------------------------------------------------------------------------------
+
+This Software is provided "AS IS" and "AS AVAILABLE". The authors make no
+guarantees regarding the accuracy of predictions, scoring, fixture data,
+availability of the service, fitness for a particular purpose or suitability
+for any commercial use. Use of the Software is at your own risk.
+
+================================================================================
+
+SPDX-License-Identifier: MIT

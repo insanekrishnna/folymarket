@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "flag-icons/css/flag-icons.min.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-display: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-pitch: var(--pitch);
+  --color-pitch-foreground: var(--pitch-foreground);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+  --color-bronze: var(--bronze);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ---------------------------------------------------------------------------
+   FWC 2026 palette — dark-first. Inspired by FIFA's tournament branding:
+   deep navy base + vibrant pitch green as primary + warm red accent, gold
+   reserved for champion/trophy highlights.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: rgba(255, 255, 255, 0.68);
+  --card-foreground: #0a0a0a;
+  --popover: rgba(255, 255, 255, 0.88);
+  --popover-foreground: #0a0a0a;
+  --primary: #13c978;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(10, 10, 10, 0.055);
+  --secondary-foreground: rgba(10, 10, 10, 0.82);
+  --muted: rgba(10, 10, 10, 0.055);
+  --muted-foreground: rgba(10, 10, 10, 0.58);
+  --accent: #13c978;
+  --accent-foreground: #ffffff;
+  --destructive: #d92d20;
+  --border: rgba(10, 10, 10, 0.1);
+  --input: rgba(10, 10, 10, 0.12);
+  --ring: #13c978;
+  --chart-1: #13c978;
+  --chart-2: #0a0a0a;
+  --chart-3: #ff6b00;
+  --chart-4: rgba(10, 10, 10, 0.6);
+  --chart-5: rgba(10, 10, 10, 0.35);
+  --radius: 1rem;
+  --sidebar: rgba(255, 255, 255, 0.68);
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #13c978;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(10, 10, 10, 0.055);
+  --sidebar-accent-foreground: rgba(10, 10, 10, 0.82);
+  --sidebar-border: rgba(10, 10, 10, 0.1);
+  --sidebar-ring: #13c978;
+  --pitch: #13c978;
+  --pitch-foreground: #ffffff;
+  --gold: #ff6b00;
+  --silver: rgba(255, 255, 255, 0.6);
+  --bronze: #bf7a45;
+}
+
+/* Light mode kept in case we add a toggle later. */
+.light {
+  --background: oklch(0.99 0.005 260);
+  --foreground: oklch(0.14 0.025 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.14 0.025 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0.025 260);
+  --primary: oklch(0.52 0.17 162);
+  --primary-foreground: oklch(0.98 0.005 260);
+  --secondary: oklch(0.95 0.01 260);
+  --secondary-foreground: oklch(0.14 0.025 260);
+  --muted: oklch(0.95 0.01 260);
+  --muted-foreground: oklch(0.45 0.015 260);
+  --accent: oklch(0.55 0.22 25);
+  --accent-foreground: oklch(0.98 0.005 25);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.14 0.025 260 / 10%);
+  --input: oklch(0.14 0.025 260 / 12%);
+  --ring: oklch(0.52 0.17 162);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    color: #0a0a0a;
+    background-image:
+      radial-gradient(900px 420px at 50% 0%, rgba(19, 201, 120, 0.12), transparent 62%),
+      radial-gradient(700px 360px at 14% 18%, rgba(19, 201, 120, 0.08), transparent 58%),
+      linear-gradient(180deg, #ffffff 0%, #f7faf8 100%);
+    background-size: auto;
+    background-attachment: fixed;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    background: none;
+    color: #0a0a0a;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  /* Strip native number-input spinner arrows everywhere. */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* Themed scrollbars — thin, rounded, primary-tinted. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(19, 201, 120, 0.4) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(19, 201, 120, 0.35);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: background-color 0.15s ease;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(19, 201, 120, 0.6);
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+/* Pitch stripes utility — subtle horizontal lines for backgrounds. */
+@utility bg-pitch-stripes {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(19, 201, 120, 0.08) 0 2px,
+    transparent 2px 24px
+  );
+}
+
+/* Bunting: hanging pennants with a subtle wind-like sway. */
+@keyframes bunting-sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+
+@keyframes bunting-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@utility bunting-track {
+  animation: bunting-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.bunting-track:hover {
+  animation-play-state: paused;
+}
+
+@utility bunting-pennant {
+  transform-origin: 50% 0;
+  animation: bunting-sway 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@utility bunting-gust {
+  transform-origin: 50% 0;
+  transform: rotate(var(--gust, 0deg));
+  transition: transform 80ms linear;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bunting-pennant { animation: none; }
+  .bunting-gust { transform: none; }
+  .bunting-track { animation: none; }
+}
+
+/* Faint dotted pattern */
+@utility bg-dots {
+  background-image: radial-gradient(
+    rgba(10, 10, 10, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+}
+
+@utility text-heading-gradient {
+  background: none;
+  color: #0a0a0a;
+  -webkit-text-fill-color: currentColor;
+}
+
+@utility terminal-card {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 18px 60px rgba(15, 23, 42, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(22px) saturate(180%);
+}

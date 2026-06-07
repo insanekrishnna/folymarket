@@ -1,0 +1,332 @@
+// FIFA World Cup 2026 prediction pool schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+
+enum Role {
+  PLAYER
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  username      String?   @unique
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  name          String?
+  passwordHash  String?
+  role          Role      @default(PLAYER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  predictions       Prediction[]
+  specialPrediction SpecialPrediction?
+  accounts          Account[]
+  sessions          Session[]
+  ownedLeagues      League[]          @relation("LeagueOwner")
+  leagueMemberships LeagueMember[]
+}
+
+// ============================================================
+// PRIVATE LEAGUES
+// ============================================================
+
+model League {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  code      String   @unique // short invite code (e.g. "FAM-7K9X")
+  ownerId   String
+  owner     User     @relation("LeagueOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members LeagueMember[]
+
+  @@index([ownerId])
+}
+
+model LeagueMember {
+  id       String @id @default(cuid())
+  leagueId String
+  league   League @relation(fields: [leagueId], references: [id], onDelete: Cascade)
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  joinedAt DateTime @default(now())
+
+  @@unique([leagueId, userId])
+  @@index([userId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ============================================================
+// WORLD CUP CORE
+// ============================================================
+
+enum Confederation {
+  UEFA
+  CONMEBOL
+  CONCACAF
+  CAF
+  AFC
+  OFC
+}
+
+enum Position {
+  GK
+  DEF
+  MID
+  FWD
+}
+
+enum Stage {
+  GROUP
+  R32
+  R16
+  QF
+  SF
+  TP
+  FINAL
+}
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+}
+
+model Group {
+  id      Int     @id @default(autoincrement())
+  letter  String  @unique // "A" .. "L"
+  teams   Team[]
+  matches Match[]
+}
+
+model Team {
+  id            Int           @id @default(autoincrement())
+  code          String        @unique // FIFA 3-letter code
+  name          String
+  flagUrl       String?
+  confederation Confederation
+  groupId       Int?
+  group         Group?        @relation(fields: [groupId], references: [id])
+
+  players     Player[]
+  homeMatches Match[]  @relation("HomeTeam")
+  awayMatches Match[]  @relation("AwayTeam")
+  wonMatches  Match[]  @relation("Winner")
+
+  specialAsChampion SpecialPrediction[] @relation("ChampionPick")
+  specialAsRunnerUp SpecialPrediction[] @relation("RunnerUpPick")
+  actualAsChampion  ActualAwards?       @relation("ActualChampion")
+  actualAsRunnerUp  ActualAwards?       @relation("ActualRunnerUp")
+  predictionsWinner Prediction[]
+}
+
+model Player {
+  id       Int      @id @default(autoincrement())
+  name     String
+  position Position
+  teamId   Int
+  team     Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  specialAsTopScorer  SpecialPrediction[] @relation("TopScorerPick")
+  specialAsTopAssist  SpecialPrediction[] @relation("TopAssistPick")
+  specialAsBestPlayer SpecialPrediction[] @relation("BestPlayerPick")
+  specialAsBestKeeper SpecialPrediction[] @relation("BestKeeperPick")
+
+  actualAsTopScorer  ActualAwards? @relation("ActualTopScorer")
+  actualAsTopAssist  ActualAwards? @relation("ActualTopAssist")
+  actualAsBestPlayer ActualAwards? @relation("ActualBestPlayer")
+  actualAsBestKeeper ActualAwards? @relation("ActualBestKeeper")
+
+  @@index([teamId])
+}
+
+model Match {
+  id          Int    @id @default(autoincrement())
+  matchNumber Int    @unique // Official FIFA match number (1..104)
+  stage       Stage
+  groupId     Int?
+  group       Group? @relation(fields: [groupId], references: [id])
+
+  date    DateTime
+  venue   String
+  city    String
+  country String
+
+  homeTeamId      Int?
+  homeTeam        Team?   @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeamId      Int?
+  awayTeam        Team?   @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  // Placeholder labels used to resolve knockout matchups (e.g. "1A", "2B", "W73", "3ABCDF").
+  // Null once the match has a concrete team assigned in homeTeamId/awayTeamId.
+  homePlaceholder String?
+  awayPlaceholder String?
+
+  // Actual result (filled by admin once match ends)
+  homeScore    Int?
+  awayScore    Int?
+  homeScoreET  Int?
+  awayScoreET  Int?
+  homeScorePen Int?
+  awayScorePen Int?
+  winnerId     Int?
+  winner       Team? @relation("Winner", fields: [winnerId], references: [id])
+
+  status MatchStatus @default(SCHEDULED)
+
+  predictions Prediction[]
+
+  @@index([stage, date])
+}
+
+model Prediction {
+  id      Int    @id @default(autoincrement())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  matchId Int
+  match   Match  @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  homeScore Int
+  awayScore Int
+  // For knockout ties: user picks a winner (applies after ET/pens)
+  winnerId  Int?
+  winner    Team? @relation(fields: [winnerId], references: [id])
+
+  points     Int       @default(0)
+  computedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, matchId])
+}
+
+model SpecialPrediction {
+  id     Int    @id @default(autoincrement())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Free-text player names (no Player table yet). Admin normalizes at scoring.
+  topScorerName      String?
+  topAssistName      String?
+  bestPlayerName     String?
+  bestGoalkeeperName String?
+
+  // Kept for a future v2 that references Player records directly.
+  topScorerId      Int?
+  topScorer        Player? @relation("TopScorerPick", fields: [topScorerId], references: [id])
+  topAssistId      Int?
+  topAssist        Player? @relation("TopAssistPick", fields: [topAssistId], references: [id])
+  bestPlayerId     Int?
+  bestPlayer       Player? @relation("BestPlayerPick", fields: [bestPlayerId], references: [id])
+  bestGoalkeeperId Int?
+  bestGoalkeeper   Player? @relation("BestKeeperPick", fields: [bestGoalkeeperId], references: [id])
+
+  championId Int?
+  champion   Team? @relation("ChampionPick", fields: [championId], references: [id])
+  runnerUpId Int?
+  runnerUp   Team? @relation("RunnerUpPick", fields: [runnerUpId], references: [id])
+
+  points     Int       @default(0)
+  computedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Singleton table: actual tournament awards (one row, managed by admin)
+model ActualAwards {
+  id        Int     @id @default(autoincrement())
+  singleton Boolean @unique @default(true)
+
+  topScorerName      String?
+  topAssistName      String?
+  bestPlayerName     String?
+  bestGoalkeeperName String?
+
+  topScorerId      Int?    @unique
+  topScorer        Player? @relation("ActualTopScorer", fields: [topScorerId], references: [id])
+  topAssistId      Int?    @unique
+  topAssist        Player? @relation("ActualTopAssist", fields: [topAssistId], references: [id])
+  bestPlayerId     Int?    @unique
+  bestPlayer       Player? @relation("ActualBestPlayer", fields: [bestPlayerId], references: [id])
+  bestGoalkeeperId Int?    @unique
+  bestGoalkeeper   Player? @relation("ActualBestKeeper", fields: [bestGoalkeeperId], references: [id])
+
+  championId Int?  @unique
+  champion   Team? @relation("ActualChampion", fields: [championId], references: [id])
+  runnerUpId Int?  @unique
+  runnerUp   Team? @relation("ActualRunnerUp", fields: [runnerUpId], references: [id])
+
+  updatedAt DateTime @updatedAt
+}
+
+// Singleton table: scoring configuration (one row)
+model ScoringConfig {
+  id        Int     @id @default(autoincrement())
+  singleton Boolean @unique @default(true)
+
+  pointsExactScore      Int @default(5)
+  pointsCorrectWinner   Int @default(3)
+  pointsCorrectGoalDiff Int @default(1)
+  pointsAdvanceR32      Int @default(1)
+  pointsAdvanceR16      Int @default(2)
+  pointsAdvanceQF       Int @default(3)
+  pointsAdvanceSF       Int @default(5)
+  pointsFinalist        Int @default(8)
+  pointsRunnerUp        Int @default(10)
+  pointsChampion        Int @default(25)
+  pointsTopScorer       Int @default(15)
+  pointsTopAssist       Int @default(10)
+  pointsBestPlayer      Int @default(15)
+  pointsBestGoalkeeper  Int @default(10)
+
+  updatedAt DateTime @updatedAt
+}
