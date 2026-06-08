@@ -8,7 +8,7 @@ import { GoogleButton } from "./google-button";
 export const metadata: Metadata = {
   title: "Sign In",
   description:
-    "Sign in to your World Cup 2026 Predictions account and continue making your predictions.",
+    "Sign in to your Polymatch account and continue making your predictions.",
   alternates: { canonical: "/login" },
   robots: { index: false, follow: true },
 };
@@ -37,7 +37,7 @@ export default async function LoginPage() {
         </div>
         <LoginForm />
         <p className="text-center text-sm text-muted-foreground">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/register" className="font-medium text-foreground underline-offset-4 hover:underline">
             Sign up
           </Link>

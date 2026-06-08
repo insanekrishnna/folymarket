@@ -9,7 +9,7 @@ import { TimezoneSetting } from "./timezone-setting";
 import { HourFormatSetting } from "./hour-format-setting";
 
 export const metadata = {
-  title: "Preferences · FWC 2026",
+  title: "Preferences - Polymatch",
 };
 
 export default async function SettingsPage() {

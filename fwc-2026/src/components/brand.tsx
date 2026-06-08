@@ -16,7 +16,7 @@ export function Brand({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 font-semibold uppercase tracking-[0.14em]",
+        "inline-flex items-center gap-2 font-semibold tracking-tight",
         sizes.outer,
         className,
       )}
@@ -29,8 +29,7 @@ export function Brand({
       >
         <SoccerBall className="size-3.5" />
       </span>
-      <span>FWC</span>
-      <span className="font-bold text-primary">26</span>
+      <span>Polymatch</span>
     </div>
   );
 }

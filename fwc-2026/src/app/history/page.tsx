@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "FIFA World Cup data since 1930, plus the current 2026 tournament snapshot: teams, matches, hosts and key dates.",
   alternates: { canonical: "/history" },
   openGraph: {
-    title: "World Cup Data - World Cup 2026 Predictions",
+    title: "World Cup Data - Polymatch",
     description:
       "Complete FIFA World Cup winners history plus the current 2026 tournament snapshot.",
     url: "/history",

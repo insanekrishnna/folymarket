@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/icon.png" alt="World Cup 2026 Predictions" width="128" />
+<img src="public/icon.png" alt="Polymatch" width="128" />
 
-# World Cup 2026 Predictions
+# Polymatch
 
 **Predict the FIFA World Cup 2026, build your bracket and compete with your friends.**
 
@@ -19,7 +19,7 @@
 
 ## 📖 About the Project
 
-**World Cup 2026 Predictions** is a multiplayer web application (pool/prediction game) to predict the FIFA World Cup 2026 (USA · Canada · Mexico). Participants predict scores for all 104 matches, build their knockout bracket, and compete for the top ranking.
+**Polymatch** is a multiplayer web application (pool/prediction game) to predict the FIFA World Cup 2026 (USA · Canada · Mexico). Participants predict scores for all 104 matches, build their knockout bracket, and compete for the top ranking.
 
 Designed for playing **with friends**, with a transparent scoring system and a football-inspired design centered on the tournament experience.
 

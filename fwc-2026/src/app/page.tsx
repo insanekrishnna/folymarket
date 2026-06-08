@@ -37,7 +37,7 @@ export default async function HomePage() {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
-        name: "World Cup 2026 Predictions",
+        name: "Polymatch",
         inLanguage: "en",
         description:
           "World Cup 2026: Predict match scores, build your bracket and compete with friends.",

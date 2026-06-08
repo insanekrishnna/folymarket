@@ -309,7 +309,7 @@ export function BracketForm({
 
       <div className="flex flex-col gap-3 rounded-lg border border-border/60 bg-card/60 p-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">
-          Entering a score advances the winner to the next round. Save when you're done.
+          Entering a score advances the winner to the next round. Save when you&apos;re done.
         </p>
         <Button type="submit" disabled={pending} className="gap-1.5">
           {pending ? (

@@ -22,17 +22,17 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const siteUrl = getSiteUrl();
+const siteName = "Polymatch";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    // default: "Test - Demmo",
-    default: "World Cup 2026 Predictions - Predict the FIFA World Cup",
-    template: "%s - World Cup 2026 Predictions",
+    default: "Polymatch - Predict the FIFA World Cup",
+    template: `%s - ${siteName}`,
   },
   description:
-    "World Cup 2026 Predictions in USA, Canada & Mexico. Predict match scores, build your bracket and compete with your friends for glory.",
-  applicationName: "World Cup 2026 Predictions",
+    "Polymatch lets you predict World Cup 2026 match scores, build your bracket and compete with your friends for glory.",
+  applicationName: siteName,
   keywords: [
     "World Cup 2026",
     "FIFA World Cup 2026",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     "USA Canada Mexico",
     "football predictions",
   ],
-  authors: [{ name: "World Cup 2026 Predictions" }],
-  creator: "World Cup 2026 Predictions",
+  authors: [{ name: siteName }],
+  creator: siteName,
   alternates: {
     canonical: "/",
   },
@@ -50,8 +50,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en-US",
     url: siteUrl,
-    siteName: "World Cup 2026 Predictions",
-    title: "World Cup 2026 Predictions - Predict the FIFA World Cup",
+    siteName,
+    title: "Polymatch - Predict the FIFA World Cup",
     description:
       "Predict the 104 matches of the 2026 World Cup, build your bracket and compete with friends.",
     images: [
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
         url: "/icon.png",
         width: 512,
         height: 512,
-        alt: "World Cup 2026 Predictions",
+        alt: siteName,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "World Cup 2026 Predictions",
+    title: siteName,
     description:
       "Predict the 2026 World Cup and compete with your friends for the trophy.",
     images: ["/icon.png"],

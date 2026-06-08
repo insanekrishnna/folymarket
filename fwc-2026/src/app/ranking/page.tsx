@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Live leaderboard of the 2026 World Cup Predictions pool. See who's leading among your friends based on correct predictions.",
   alternates: { canonical: "/ranking" },
   openGraph: {
-    title: "Leaderboard · World Cup 2026 Predictions",
+    title: "Leaderboard - Polymatch",
     description: "Live leaderboard of the 2026 World Cup predictions pool.",
     url: "/ranking",
   },

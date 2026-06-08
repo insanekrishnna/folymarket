@@ -65,7 +65,7 @@ export default async function NoticiasPage() {
       {error === "fetch-failed" && (
         <Alert className="mb-6">
           <AlertCircle className="size-4" />
-          <AlertTitle>We couldn't load the news</AlertTitle>
+          <AlertTitle>We couldn&apos;t load the news</AlertTitle>
           <AlertDescription>
             Try again in a few minutes.
           </AlertDescription>

@@ -8,7 +8,7 @@ import { GoogleButton } from "@/app/login/google-button";
 export const metadata: Metadata = {
   title: "Sign Up",
   description:
-    "Sign up for free at World Cup 2026 Predictions, make your predictions and compete with your friends for the trophy.",
+    "Sign up for free at Polymatch, make your predictions and compete with your friends for the trophy.",
   alternates: { canonical: "/register" },
 };
 

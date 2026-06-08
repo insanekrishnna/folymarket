@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "World Cup Predictions 2026 - Predict the Football World Cup";
+export const alt = "Polymatch - Predict the Football World Cup";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -47,7 +47,7 @@ export default function Image() {
               color: "#0b1224",
             }}
           >
-            FWC
+            P
           </div>
           <div
             style={{
@@ -73,8 +73,7 @@ export default function Image() {
               letterSpacing: -4,
             }}
           >
-            World Cup&nbsp;
-            <span style={{ color: "#22c55e" }}>Predictions</span>
+            <span style={{ color: "#22c55e" }}>Polymatch</span>
           </div>
           <div
             style={{
@@ -86,7 +85,7 @@ export default function Image() {
               color: "#facc15",
             }}
           >
-            2026
+            World Cup 2026
           </div>
           <div
             style={{

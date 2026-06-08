@@ -10,7 +10,7 @@ import { CreateLeagueForm, JoinLeagueForm } from "./forms";
 
 export const metadata: Metadata = {
   title: "My private leagues",
-  description: "Create private leagues or join with a code to compete with friends and family in the World Cup Predictions 2026.",
+  description: "Create private leagues or join with a code to compete with friends and family in Polymatch.",
   alternates: { canonical: "/leagues" },
 };
 
